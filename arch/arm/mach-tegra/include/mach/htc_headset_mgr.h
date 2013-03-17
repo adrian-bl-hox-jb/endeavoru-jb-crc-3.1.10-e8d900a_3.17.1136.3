@@ -47,7 +47,7 @@
 		tm.tm_min, tm.tm_sec, ts.tv_nsec / 1000000); \
 	} while (0)
 #define HS_DBG(fmt, arg...) \
-	if (hs_debug_log_state()) {  \
+	if (0) {  \
 		printk(KERN_INFO "##### [" DRIVER_NAME "] (%s) " fmt "\n", \
 		       __func__, ## arg); \
 	}

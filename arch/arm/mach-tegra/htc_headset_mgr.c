@@ -1006,16 +1006,16 @@ static void insert_detect_work_func(struct work_struct *work)
 
 int hs_notify_plug_event(int insert)
 {
-	HS_LOG("pabx: REAL Headset status %d", insert);
+	HS_DBG("pabx: REAL Headset status %d", insert);
 
 	pabx_h2wf_lastplug_value = insert;
 
 	if(pabx_h2wf_val == 0) {
-		HS_LOG("pabx: sending plug event to _work func");
+		HS_DBG("pabx: sending plug event to _work func");
 		hs_notify_plug_event_work(insert);
 	}
 	else {
-		HS_LOG("pabx: keeping plug event hidden");
+		HS_DBG("pabx: keeping plug event hidden");
 	}
 
 	return 1;
@@ -1028,7 +1028,7 @@ int hs_notify_plug_event_work(int insert)
 	hi->is_ext_insert = insert;
 	mutex_unlock(&hi->mutex_lock);
 
-	HS_LOG("pabx: working with headset state=%d", hi->is_ext_insert);
+	HS_DBG("pabx: working with headset state=%d", hi->is_ext_insert);
 
 	ret = cancel_delayed_work_sync(&mic_detect_work);
 	if (ret)
